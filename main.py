@@ -11,7 +11,7 @@ import sys
 pygame.init()
 
 # Set up the display
-WIDTH, HEIGHT = 800, 600
+WIDTH, HEIGHT = 600, 400
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Last Stand")
 
@@ -28,7 +28,7 @@ temp_rect = temp.get_rect(center=(WIDTH-120,HEIGHT//5.5))
 temp = pygame.transform.scale(temp,(270,HEIGHT/2))
 #turn into list
 temp_rect.x = 380
-temp_rect.y = 260
+temp_rect.y = 170
 temp_rect_speed=16
 
 enemy=pygame.image.load("Temp_Enemy.png")
@@ -36,7 +36,7 @@ enemy_rect = enemy.get_rect(center=(WIDTH-20,HEIGHT//1.3))
 enemy= pygame.transform.scale(enemy,(300,HEIGHT/2))
 
 enemy_rect.x=-120
-enemy_rect.y=240
+enemy_rect.y=170
 
 fireball=pygame.image.load("temp_fireball.png")
 fireball_rect = fireball.get_rect(center=(10,HEIGHT//1.6))
@@ -84,6 +84,8 @@ while running:
         
        # while fireball_rect.x >= -150:
         # fireball_rect.x -= 2
+        print (temp_rect)
+       
         
 
     # Update display
