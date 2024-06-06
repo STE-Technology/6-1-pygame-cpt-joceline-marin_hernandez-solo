@@ -32,6 +32,12 @@ temp_rect.x = 380
 temp_rect.y = 220
 temp_rect_speed=10
 
+
+
+
+score=0
+Health = 3
+
 enemy=pygame.image.load("Temp_Enemy.png")
 #enemy_rect = enemy.get_rect(center=(WIDTH-20,HEIGHT//1.3))
 enemy_rect= enemy.get_rect()
@@ -39,12 +45,12 @@ enemy= pygame.transform.scale(enemy,(120,HEIGHT/4.5))
 
 enemy_rect.x=-120
 enemy_rect.y=200
-enemy_rect_speed: 8
+enemy_rect_speed: 9
 
 fireball=pygame.image.load("temp_fireball.png")
 fireball_rect = fireball.get_rect(center=(10,HEIGHT//1.6))
 fireball = pygame.transform.scale(fireball,(150,HEIGHT/3))
-fireball_rect_speed= 6
+fireball_rect_speed= 13
 fireball_rect.y = temp_rect.y + 151
 
 # Initialize more variables and states below
@@ -74,17 +80,34 @@ while running:
     screen.blit(background,(1,0))
     screen.blit(temp,temp_rect)
     screen.blit(enemy,enemy_rect)
+    screen.blit(fireball,fireball_rect)
 
     input=pygame.key.get_pressed()
 
-    #if enemy_rect.colliderect(temp_rect):
+  #  if enemy_rect.colliderect(temp_rect):
+
+    if  enemy_rect < temp_rect:
+        enemy_rect.x +=  9
+    elif enemy_rect > temp_rect:
+        enemy_rect.x -= 9
+        if enemy_rect.colliderect(temp_rect):
+            Health -1 
+            enemy_rect.x -10
+
+    
+   
+      
+     
+    
+
+
         
 
 
-   # if enemy_rect <= temp_rect:
-    #    enemy_rect.x += 4
-   # elif enemy_rect >= temp_rect:
-   #     enemy_rect.x -= 4
+    #if enemy_rect <= temp_rect:
+      #  enemy_rect.x += 4
+    #elif enemy_rect >= temp_rect:
+      #  enemy_rect.x -= 4
 
     if input[pygame.K_LEFT]:
         temp_rect.x -= temp_rect_speed
@@ -94,15 +117,39 @@ while running:
     
 
     if input[pygame.K_1]:
-        screen.blit(fireball,fireball_rect)
-        fireball_rect.x = temp_rect.x + 10
-        fireball_rect.y = temp_rect.y +2
+      
+      fireball_rect.y = temp_rect.y -2
+      fireball_rect.x = temp_rect.x - 60
+    if fireball_rect.x < temp_rect.x:
+        fireball_rect.x -= fireball_rect_speed
+
+    
+    if input[pygame.K_2]:
+      
+      fireball_rect.y = temp_rect.y +2
+      fireball_rect.x = temp_rect.x + 20
+    if fireball_rect.x > temp_rect.x:
+        fireball_rect.x += fireball_rect_speed
+
+
+   # if fireball_rect.colliderect(enemy_rect):
+        
+       # fireball_rect.x = temp_rect.x -60
+       # fireball_rect.x < temp_rect.x
+       # fireball_rect.x -= 1
+    #elif fireball_rect.x < 400:
+        #fireball_rect.x -= 1
+       # fireball_rect.x = 1
+
+    #elif fireball_rect < temp_rect:
+      #  fireball_rect.x -= 6
+
        # while fireball_rect not 
       
         
-       # while fireball_rect.x >= -150:
-        # fireball_rect.x -= 2
-        print (enemy_rect.x)
+        #while fireball_rect.x >= -150:
+       #  fireball_rect.x -= 2
+
        
  
 
