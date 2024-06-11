@@ -98,6 +98,7 @@ while running:
    
     if enemy_rect.colliderect(fireball_rect):
         enemy_rect.x = -120
+        fireball_rect.x = 600
         
 
      
@@ -120,18 +121,16 @@ while running:
     
   
     if input[pygame.K_1]:
-     
-      fireball_rect.y = temp_rect.y -2
-      fireball_rect.x = temp_rect.x - 60
+        fireball_rect.y = temp_rect.y -2
+        fireball_rect.x = temp_rect.x - 60
      
     if fireball_rect.x < temp_rect.x:
         fireball_rect.x -= fireball_rect_speed
 
     
     if input[pygame.K_2]:
-      
-      fireball_rect.y = temp_rect.y +2
-      fireball_rect.x = temp_rect.x + 20
+        fireball_rect.y = temp_rect.y +2
+        fireball_rect.x = temp_rect.x + 20
     if fireball_rect.x > temp_rect.x:
         fireball_rect.x += fireball_rect_speed
 
