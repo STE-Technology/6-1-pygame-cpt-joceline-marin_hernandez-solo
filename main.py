@@ -45,7 +45,12 @@ enemy= pygame.transform.scale(enemy,(120,HEIGHT/4.5))
 
 enemy_rect.x=-120
 enemy_rect.y=200
-enemy_rect_speed: 6
+enemy_rect_speed = 3
+
+bat=pygame.image.load("bat_enemy.png")
+bat_rect= enemy.get_rect()
+bat_rect.x = 10
+bat_rect.y = 10
 
 fireball=pygame.image.load("temp_fireball.png")
 fireball_rect = fireball.get_rect(center=(10,HEIGHT//1.6))
@@ -81,15 +86,16 @@ while running:
     screen.blit(temp,temp_rect)
     screen.blit(enemy,enemy_rect)
     screen.blit(fireball,fireball_rect)
+    screen.blit(bat,bat_rect)
 
     input=pygame.key.get_pressed()
 
   #  if enemy_rect.colliderect(temp_rect):
 
     if  enemy_rect < temp_rect:
-        enemy_rect.x +=  9
+        enemy_rect.x +=  6
     elif enemy_rect > temp_rect:
-        enemy_rect.x -= 9
+        enemy_rect.x -= 6
         if enemy_rect.colliderect(temp_rect):
             Health -1 
             enemy_rect.x -10
@@ -99,6 +105,12 @@ while running:
     if enemy_rect.colliderect(fireball_rect):
         enemy_rect.x = -120
         fireball_rect.x = 600
+
+
+    if enemy_rect.colliderect(temp_rect):
+        Health - 1
+        
+
         
 
      
