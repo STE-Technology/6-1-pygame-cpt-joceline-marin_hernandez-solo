@@ -97,14 +97,26 @@ while running:
     elif enemy_rect > temp_rect:
         enemy_rect.x -= 6
         if enemy_rect.colliderect(temp_rect):
-            Health -1 
+            Health = Health -1 
             enemy_rect.x -10
 
-    
+    if bat_rect.y < temp_rect.y:
+        bat_rect.y += 2
+        #bat_rect.x += 5
+    if bat_rect.x < temp_rect.x:
+        bat_rect.x += 2
+    elif bat_rect.x > temp_rect.x:
+        bat_rect.x -= 2
+
+   # if bat_rect.x < temp_rect.x:
+       # bat_rect.x -= 5
+        
+ #   elif enemy_rect > temp_rect:
+   #     enemy_rect.y -= 8
    
     if enemy_rect.colliderect(fireball_rect):
         enemy_rect.x = -120
-        fireball_rect.x = 600
+        fireball_rect.x = 700
 
 
     if enemy_rect.colliderect(temp_rect):
