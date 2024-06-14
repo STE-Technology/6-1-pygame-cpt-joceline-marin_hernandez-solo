@@ -32,6 +32,13 @@ temp_rect.x = 380
 temp_rect.y = 220
 temp_rect_speed=10
 
+font=pygame.font.Font(None,30)
+string_score = "score:"
+text_colour = WHITE
+font_surface = font.render(string_score,True,text_colour)
+font_rect = font_surface.get_rect
+#font_rect.x = 20
+#font_rect.y = 20
 
 
 
@@ -53,8 +60,7 @@ bat_rect= enemy.get_rect()
 bat_rect.x = 10
 bat_rect.y = 10
 
-#beam=pygame.image.load("BEAMMM.png")
-#beam_rect= enemy.get_rect()
+
 
 
 fireball=pygame.image.load("temp_fireball.png")
@@ -66,7 +72,6 @@ fireball_rect.y = temp_rect.y + 151
 # Initialize more variables and states below
 #
 
-#### TESTING
 # if fireball_rect.colliderect(enemy_rect):
 #     # do something
 ###
