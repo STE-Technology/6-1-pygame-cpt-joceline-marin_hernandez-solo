@@ -105,8 +105,8 @@ while running:
     if  enemy_rect < temp_rect:
         enemy_rect.x +=  6
     elif enemy_rect > temp_rect:
-        enemy_rect.x -= 6
-        if enemy_rect.colliderect(temp_rect):
+         enemy_rect.x -= 6
+         if enemy_rect.colliderect(temp_rect):
             Health = Health -1 
             enemy_rect.x -10
 
@@ -128,7 +128,10 @@ while running:
         fireball_rect.x = 700
      
 
-
+    if temp_rect.x <= 0:
+         temp_rect.x = 0
+    if temp_rect.x >= 500:
+         temp_rect.x = 500
 
     
     if enemy_rect.colliderect(temp_rect):
