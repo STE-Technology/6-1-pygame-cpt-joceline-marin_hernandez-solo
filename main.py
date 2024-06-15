@@ -24,7 +24,6 @@ background = pygame.image.load("First_Spawn.png")
 background = pygame.transform.scale(background,(WIDTH,HEIGHT))
 
 temp = pygame.image.load("PlaceHolder.png")
-#temp_rect = temp.get_rect(center=(WIDTH,HEIGHT//5.5))
 temp_rect = temp.get_rect()
 temp = pygame.transform.scale(temp,(90,HEIGHT/5.5))
 #turn into list
@@ -32,22 +31,19 @@ temp_rect.x = 380
 temp_rect.y = 220
 temp_rect_speed=10
 
-font=pygame.font.Font(None,30)
-string_score = "score:"
-text_colour = WHITE
-font_surface = font.render(string_score,True,text_colour)
-font_rect = font_surface.get_rect
-#font_rect.x = 20
-#font_rect.y = 20
-
-
-
 score=0
 Health = 20
 points=0
 
+font=pygame.font.Font(None,30)
+string_score = f"score:{score}"
+text_colour = WHITE
+font_surface = font.render(string_score,True,text_colour)
+font_rect = font_surface.get_rect()
+
+
 enemy=pygame.image.load("Temp_Enemy.png")
-#enemy_rect = enemy.get_rect(center=(WIDTH-20,HEIGHT//1.3))
+
 enemy_rect= enemy.get_rect()
 enemy= pygame.transform.scale(enemy,(120,HEIGHT/4.5))
 
@@ -97,6 +93,7 @@ while running:
     screen.blit(enemy,enemy_rect)
     screen.blit(fireball,fireball_rect)
     screen.blit(bat,bat_rect)
+  #  screen.blit(font_surface,font_rect)
 
     input=pygame.key.get_pressed()
 
@@ -121,12 +118,19 @@ while running:
     if enemy_rect.colliderect(fireball_rect):
         enemy_rect.x = -120
         fireball_rect.x = 700
+        score += 3
+        string_score = f"score:{score}"
+        score_surface = font.render(string_score,True,text_colour)
 
     if bat_rect.colliderect(fireball_rect):
         bat_rect.x = random.randint(1,60)
         bat_rect.y = 1
         fireball_rect.x = 700
-     
+        score += 5
+        string_score = f"score:{score}"
+        score_surface = font.render(string_score,True,text_colour)
+    
+    screen.blit(font_surface,font_rect)
 
     if temp_rect.x <= 0:
          temp_rect.x = 0
