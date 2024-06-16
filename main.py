@@ -93,7 +93,7 @@ while running:
     screen.blit(enemy,enemy_rect)
     screen.blit(fireball,fireball_rect)
     screen.blit(bat,bat_rect)
-  #  screen.blit(font_surface,font_rect)
+    #screen.blit(font_surface,font_rect)
 
     input=pygame.key.get_pressed()
 
@@ -121,7 +121,8 @@ while running:
         score += 3
         string_score = f"score:{score}"
         score_surface = font.render(string_score,True,text_colour)
-
+    screen.blit(font_surface,font_rect)
+    
     if bat_rect.colliderect(fireball_rect):
         bat_rect.x = random.randint(1,60)
         bat_rect.y = 1
@@ -129,12 +130,12 @@ while running:
         score += 5
         string_score = f"score:{score}"
         score_surface = font.render(string_score,True,text_colour)
-    
-    screen.blit(font_surface,font_rect)
+        
+    #screen.blit(font_surface,font_rect)
 
     if temp_rect.x <= 0:
          temp_rect.x = 0
-    if temp_rect.x >= 500:
+    if temp_rect.x >= 505:
          temp_rect.x = 500
 
     
@@ -165,7 +166,7 @@ while running:
         fireball_rect.x = temp_rect.x + 20
     if fireball_rect.x > temp_rect.x:
         fireball_rect.x += fireball_rect_speed
-
+    screen.blit(font_surface,font_rect)
     # Update display
     pygame.display.flip()
     clock.tick(30)  # Limit frame rate to 30 fps
