@@ -30,7 +30,8 @@ temp = pygame.transform.scale(temp,(90,HEIGHT/5.5))
 temp_rect.x = 380
 temp_rect.y = 220
 temp_rect_speed=10
-
+temp_forward = True
+temp_back = False
 score=0
 Health = 20
 points=0
@@ -43,19 +44,20 @@ font_rect = font_surface.get_rect()
 
 
 enemy=pygame.image.load("Temp_Enemy.png")
-
 enemy_rect= enemy.get_rect()
 enemy= pygame.transform.scale(enemy,(120,HEIGHT/4.5))
-
 enemy_rect.x=-120
 enemy_rect.y=200
 enemy_rect_speed = 3
+enemy_forward = True
+enemy_back = False
 
 bat=pygame.image.load("bat_enemy.png")
 bat_rect= enemy.get_rect()
 bat_rect.x = 10
 bat_rect.y = 10
-
+bat_forward = True
+bat_backward = False
 
 
 
@@ -103,6 +105,7 @@ while running:
         enemy_rect.x +=  6
     elif enemy_rect > temp_rect:
          enemy_rect.x -= 6
+        
          if enemy_rect.colliderect(temp_rect):
             Health = Health -1 
             enemy_rect.x -10
@@ -112,8 +115,14 @@ while running:
        
     if bat_rect.x < temp_rect.x:
         bat_rect.x += 2
+        if bat_forward:
+            
+            bat_forward = False
     elif bat_rect.x > temp_rect.x:
         bat_rect.x -= 2
+        if not bat_backward:
+         bat = pygame.transform.flip(bat,True,False)
+         bat_backward = True
    
     if enemy_rect.colliderect(fireball_rect):
         enemy_rect.x = -120
@@ -149,8 +158,12 @@ while running:
  
     if input[pygame.K_LEFT]:
         temp_rect.x -= temp_rect_speed
+        
     if input[pygame.K_RIGHT]:
         temp_rect.x += temp_rect_speed
+        if temp_back:
+            temp = pygame.transform.flip(temp,True,False)
+            temp_back = False
 
   
     if input[pygame.K_1]:
